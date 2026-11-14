@@ -1,0 +1,221 @@
+{
+  "version_tag": "4FGL_DR4",
+  "selection_metric": "macro_f1",
+  "split_id": "split_00_primary",
+  "fine_setup_used_for_both_levels": "B",
+  "superclass_order": [
+    "BLAZAR_HE",
+    "BLAZAR_LE",
+    "AGN_OTHER",
+    "PSR_ISOLATED",
+    "BINARY_SYSTEMS",
+    "SNR_PWN",
+    "GALACTIC_EXT"
+  ],
+  "taxonomy": {
+    "fsrq": "BLAZAR_HE",
+    "ssrq": "BLAZAR_HE",
+    "css": "BLAZAR_HE",
+    "bll": "BLAZAR_LE",
+    "rdg": "AGN_OTHER",
+    "nlsy1": "AGN_OTHER",
+    "agn": "AGN_OTHER",
+    "sey": "AGN_OTHER",
+    "psr": "PSR_ISOLATED",
+    "msp": "PSR_ISOLATED",
+    "glc": "PSR_ISOLATED",
+    "hmb": "BINARY_SYSTEMS",
+    "lmb": "BINARY_SYSTEMS",
+    "bin": "BINARY_SYSTEMS",
+    "nov": "BINARY_SYSTEMS",
+    "snr": "SNR_PWN",
+    "pwn": "SNR_PWN",
+    "sfr": "GALACTIC_EXT",
+    "gal": "GALACTIC_EXT",
+    "sbg": "GALACTIC_EXT"
+  },
+  "adopted_from": "section8_screening:HistGBC__branch2",
+  "router": {
+    "model_name": "HistGBC",
+    "tag": "router_99",
+    "pca_variance": null,
+    "scaler_name": null,
+    "features": [
+      "log_Unc_Flux1000",
+      "log_Unc_Energy_Flux100",
+      "Frac_Variability",
+      "log_Variability_Index",
+      "LP_beta",
+      "PLEC_ExpfactorS",
+      "PL_Index",
+      "LP_Index",
+      "PLEC_IndexS",
+      "PL_Flux_Density",
+      "Unc_PL_Flux_Density",
+      "LP_Flux_Density",
+      "Unc_LP_Flux_Density",
+      "PLEC_Flux_Density",
+      "Unc_PLEC_Flux_Density",
+      "log_Pivot_Energy",
+      "SpectrumType_PLSuperExpCutoff",
+      "Conf_68_SemiMajor",
+      "Conf_68_SemiMinor",
+      "HR_2_3"
+    ],
+    "model_path": "inference_2level/router_model.joblib",
+    "super_label_encoder_classes": [
+      "AGN_OTHER",
+      "BINARY_SYSTEMS",
+      "BLAZAR_HE",
+      "BLAZAR_LE",
+      "GALACTIC_EXT",
+      "PSR_ISOLATED",
+      "SNR_PWN"
+    ]
+  },
+  "branches": {
+    "BLAZAR_HE": {
+      "status": "passthrough_or_failed",
+      "fallback_fine_class": "fsrq"
+    },
+    "BLAZAR_LE": {
+      "status": "passthrough_or_failed",
+      "fallback_fine_class": "bll"
+    },
+    "AGN_OTHER": {
+      "status": "trained",
+      "model_name": "LogReg",
+      "tag": "90",
+      "features": [
+        "log_Unc_Flux1000",
+        "log_Unc_Energy_Flux100",
+        "LP_beta",
+        "PLEC_ExpfactorS",
+        "SpectrumType_PLSuperExpCutoff",
+        "Frac_Variability",
+        "log_Variability_Index",
+        "PL_Flux_Density",
+        "Unc_PL_Flux_Density",
+        "LP_Flux_Density",
+        "Unc_LP_Flux_Density",
+        "PLEC_Flux_Density",
+        "Unc_PLEC_Flux_Density",
+        "log_Pivot_Energy",
+        "PL_Index",
+        "LP_Index",
+        "PLEC_IndexS",
+        "GLON_cos"
+      ],
+      "model_path": "inference_2level/branch_AGN_OTHER_model.joblib",
+      "label_encoder_path": "inference_2level/branch_AGN_OTHER_label_encoder.joblib",
+      "fine_classes": [
+        "agn",
+        "nlsy1",
+        "rdg",
+        "sey"
+      ],
+      "fallback_fine_class": "rdg"
+    },
+    "PSR_ISOLATED": {
+      "status": "trained",
+      "model_name": "CatBoost",
+      "tag": "router_99",
+      "features": [
+        "log_Unc_Flux1000",
+        "log_Unc_Energy_Flux100",
+        "Frac_Variability",
+        "log_Variability_Index",
+        "LP_beta",
+        "PLEC_ExpfactorS",
+        "PL_Index",
+        "LP_Index",
+        "PLEC_IndexS",
+        "PL_Flux_Density",
+        "Unc_PL_Flux_Density",
+        "LP_Flux_Density",
+        "Unc_LP_Flux_Density",
+        "PLEC_Flux_Density",
+        "Unc_PLEC_Flux_Density",
+        "log_Pivot_Energy",
+        "SpectrumType_PLSuperExpCutoff",
+        "Conf_68_SemiMajor",
+        "Conf_68_SemiMinor",
+        "HR_2_3"
+      ],
+      "model_path": "inference_2level/branch_PSR_ISOLATED_model.joblib",
+      "label_encoder_path": "inference_2level/branch_PSR_ISOLATED_label_encoder.joblib",
+      "fine_classes": [
+        "glc",
+        "msp",
+        "psr"
+      ],
+      "fallback_fine_class": "msp"
+    },
+    "BINARY_SYSTEMS": {
+      "status": "trained",
+      "model_name": "LogReg",
+      "tag": "90_DECORR",
+      "features": [
+        "log_Unc_Energy_Flux100",
+        "LP_beta",
+        "SpectrumType_PLSuperExpCutoff",
+        "Frac_Variability",
+        "log_Pivot_Energy",
+        "PL_Index",
+        "GLON_cos"
+      ],
+      "model_path": "inference_2level/branch_BINARY_SYSTEMS_model.joblib",
+      "label_encoder_path": "inference_2level/branch_BINARY_SYSTEMS_label_encoder.joblib",
+      "fine_classes": [
+        "bin",
+        "hmb",
+        "lmb",
+        "nov"
+      ],
+      "fallback_fine_class": "hmb"
+    },
+    "SNR_PWN": {
+      "status": "trained",
+      "model_name": "MLP_1x64",
+      "tag": "99_SHIFT_ROBUST",
+      "features": [
+        "log_Unc_Flux1000",
+        "SpectrumType_PLSuperExpCutoff",
+        "Unc_PL_Flux_Density",
+        "Unc_LP_Flux_Density",
+        "Unc_PLEC_Flux_Density",
+        "log_Pivot_Energy",
+        "GLON_cos",
+        "SpectrumType_LogParabola"
+      ],
+      "model_path": "inference_2level/branch_SNR_PWN_model.joblib",
+      "label_encoder_path": "inference_2level/branch_SNR_PWN_label_encoder.joblib",
+      "fine_classes": [
+        "pwn",
+        "snr"
+      ],
+      "fallback_fine_class": "snr"
+    },
+    "GALACTIC_EXT": {
+      "status": "trained",
+      "model_name": "LogReg",
+      "tag": "router_90_DECORR",
+      "features": [
+        "log_Unc_Energy_Flux100",
+        "Frac_Variability",
+        "LP_beta",
+        "PL_Index",
+        "log_Pivot_Energy",
+        "SpectrumType_PLSuperExpCutoff"
+      ],
+      "model_path": "inference_2level/branch_GALACTIC_EXT_model.joblib",
+      "label_encoder_path": "inference_2level/branch_GALACTIC_EXT_label_encoder.joblib",
+      "fine_classes": [
+        "gal",
+        "sbg",
+        "sfr"
+      ],
+      "fallback_fine_class": "sbg"
+    }
+  }
+}

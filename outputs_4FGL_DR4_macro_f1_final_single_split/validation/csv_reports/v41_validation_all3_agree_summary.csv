@@ -1,0 +1,2 @@
+n,accuracy,accuracy_ci_low,accuracy_ci_high,balanced_accuracy,balanced_accuracy_ci_low,balanced_accuracy_ci_high,scenario,n_sources_all_agree,n_total_predicted,coverage_of_all_predicted
+82,0.8170731707317073,0.7162996219829334,0.8938448565425535,0.30975056689342406,0.33360008407803,0.5818196584488438,all_3_agree,1211,2563,0.4724931720639875

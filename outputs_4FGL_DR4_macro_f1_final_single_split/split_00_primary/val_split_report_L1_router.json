@@ -1,0 +1,8 @@
+{
+  "label": "merged",
+  "n_total": 2013,
+  "n_train_core": 1711,
+  "n_val": 302,
+  "val_fraction_requested": 0.15,
+  "singleton_classes_routed_to_train_core": []
+}

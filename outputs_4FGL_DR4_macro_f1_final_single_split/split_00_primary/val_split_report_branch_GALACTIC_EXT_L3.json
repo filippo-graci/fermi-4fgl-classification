@@ -1,0 +1,8 @@
+{
+  "label": "branch_GALACTIC_EXT_L3",
+  "n_total": 14,
+  "n_train_core": 11,
+  "n_val": 3,
+  "val_fraction_requested": 0.15,
+  "singleton_classes_routed_to_train_core": []
+}

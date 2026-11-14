@@ -1,0 +1,8 @@
+{
+  "label": "blazar_subgate",
+  "n_total": 1622,
+  "n_train_core": 1379,
+  "n_val": 243,
+  "val_fraction_requested": 0.15,
+  "singleton_classes_routed_to_train_core": []
+}

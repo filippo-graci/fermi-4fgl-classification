@@ -1,0 +1,8 @@
+{
+  "label": "branch_SNR_PWN",
+  "n_total": 46,
+  "n_train_core": 39,
+  "n_val": 7,
+  "val_fraction_requested": 0.15,
+  "singleton_classes_routed_to_train_core": []
+}

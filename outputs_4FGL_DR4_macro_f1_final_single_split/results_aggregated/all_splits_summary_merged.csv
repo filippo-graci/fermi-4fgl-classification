@@ -1,0 +1,2 @@
+split_id,router_model,adopted_from,end_to_end_val_macro_f1,end_to_end_val_accuracy,end_to_end_val_bal_accuracy,end_to_end_val_kappa
+split_00_primary,RandomForest,section8_screening:HistGBC__branch2,0.3056515839723717,0.8152011922503726,0.2981356641896588,0.7081543324799493

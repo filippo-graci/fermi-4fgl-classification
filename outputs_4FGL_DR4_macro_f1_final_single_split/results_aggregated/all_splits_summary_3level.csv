@@ -1,0 +1,2 @@
+split_id,gate_model,blazar_subgate_model,nonblazar_router_model,adopted_from,end_to_end_val_macro_f1,end_to_end_val_accuracy,end_to_end_val_bal_accuracy,end_to_end_val_kappa
+split_00_primary,MLP_1x256,MLP_3x256_128_64,CatBoost,combo_screening:RandomForest+MLP_3x256_128_64+CatBoost,0.3010090635891265,0.8355688027819176,0.28548408476578824,0.7343403872560512

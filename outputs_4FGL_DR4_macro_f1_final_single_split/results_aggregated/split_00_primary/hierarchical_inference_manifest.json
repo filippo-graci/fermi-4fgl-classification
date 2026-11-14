@@ -1,0 +1,252 @@
+{
+  "version_tag": "4FGL_DR4",
+  "selection_metric": "macro_f1",
+  "split_id": "split_00_primary",
+  "fine_setup_used_for_all_levels": "B",
+  "adopted_from": "combo_screening:RandomForest+MLP_3x256_128_64+CatBoost",
+  "gate": {
+    "model_name": "RandomForest",
+    "tag": "gate_ALLPOS_DECORR",
+    "pca_variance": null,
+    "scaler_name": null,
+    "features": [
+      "Frac_Variability",
+      "log_Unc_Energy_Flux100",
+      "LP_beta",
+      "SpectrumType_PLSuperExpCutoff",
+      "Conf_68_SemiMajor",
+      "GLON_cos",
+      "PL_Index",
+      "Conf_68_PosAng",
+      "GLAT",
+      "HR_4_5",
+      "LP_SigCurv",
+      "Flux_Peak_is_null",
+      "Sqrt_TS_Band_max",
+      "HR_6_7",
+      "Unc_PLEC_ExpfactorS",
+      "nuFnu_Band_peak_band",
+      "HR_3_4",
+      "Unc_Frac_Variability",
+      "HR_2_3",
+      "HR_1_2",
+      "Sqrt_TS_Band_argmax",
+      "Flag_5"
+    ],
+    "model_path": "inference_3level/gate_model.joblib",
+    "label_encoder_classes": [
+      "BLAZAR",
+      "OTHER"
+    ]
+  },
+  "blazar_subgate": {
+    "model_name": "MLP_3x256_128_64",
+    "tag": "80",
+    "pca_variance": null,
+    "scaler_name": "Standard",
+    "features": [
+      "log_Unc_Flux1000",
+      "log_Unc_Energy_Flux100",
+      "LP_beta",
+      "PLEC_ExpfactorS",
+      "SpectrumType_PLSuperExpCutoff",
+      "Frac_Variability",
+      "log_Variability_Index",
+      "PL_Index",
+      "LP_Index",
+      "PLEC_IndexS"
+    ],
+    "model_path": "inference_3level/blazar_subgate_model.joblib",
+    "label_encoder_classes": [
+      "BLAZAR_HE",
+      "BLAZAR_LE"
+    ]
+  },
+  "nonblazar_router": {
+    "model_name": "CatBoost",
+    "tag": "nonblazar_ALLPOS_DECORR",
+    "pca_variance": null,
+    "scaler_name": null,
+    "features": [
+      "SpectrumType_PLSuperExpCutoff",
+      "log_Unc_Energy_Flux100",
+      "LP_beta",
+      "log_Pivot_Energy",
+      "log_Energy_Flux100",
+      "HR_3_4",
+      "HR_2_3",
+      "LP_Flux_Density",
+      "SpectrumType_LogParabola",
+      "HR_1_2",
+      "GLAT",
+      "LP_Index",
+      "Frac_Variability",
+      "Unc_LP_beta",
+      "HR_4_5",
+      "LP_SigCurv",
+      "HR_0_1",
+      "Sqrt_TS_Band_max",
+      "GLON_cos",
+      "Sqrt_TS_Band_argmax",
+      "HR_6_7",
+      "log_Variability_Index",
+      "GLON_sin",
+      "Conf_68_PosAng",
+      "Flag_3",
+      "Is_Extended",
+      "nuFnu_Band_peak_band"
+    ],
+    "model_path": "inference_3level/nonblazar_router_model.joblib",
+    "label_encoder_classes": [
+      "AGN_OTHER",
+      "BINARY_SYSTEMS",
+      "GALACTIC_EXT",
+      "PSR_ISOLATED",
+      "SNR_PWN"
+    ]
+  },
+  "branches": {
+    "AGN_OTHER": {
+      "status": "trained",
+      "model_name": "RandomForest",
+      "tag": "90",
+      "features": [
+        "log_Unc_Flux1000",
+        "log_Unc_Energy_Flux100",
+        "LP_beta",
+        "PLEC_ExpfactorS",
+        "SpectrumType_PLSuperExpCutoff",
+        "Frac_Variability",
+        "log_Variability_Index",
+        "PL_Flux_Density",
+        "Unc_PL_Flux_Density",
+        "LP_Flux_Density",
+        "Unc_LP_Flux_Density",
+        "PLEC_Flux_Density",
+        "Unc_PLEC_Flux_Density",
+        "log_Pivot_Energy",
+        "PL_Index",
+        "LP_Index",
+        "PLEC_IndexS",
+        "GLON_cos"
+      ],
+      "model_path": "inference_3level/branch_AGN_OTHER_model.joblib",
+      "label_encoder_path": "inference_3level/branch_AGN_OTHER_label_encoder.joblib",
+      "fine_classes": [
+        "agn",
+        "nlsy1",
+        "rdg",
+        "sey"
+      ],
+      "fallback_fine_class": "rdg"
+    },
+    "PSR_ISOLATED": {
+      "status": "trained",
+      "model_name": "CatBoost",
+      "tag": "90_DECORR",
+      "features": [
+        "log_Unc_Energy_Flux100",
+        "LP_beta",
+        "SpectrumType_PLSuperExpCutoff",
+        "Frac_Variability",
+        "log_Pivot_Energy",
+        "PL_Index",
+        "GLON_cos"
+      ],
+      "model_path": "inference_3level/branch_PSR_ISOLATED_model.joblib",
+      "label_encoder_path": "inference_3level/branch_PSR_ISOLATED_label_encoder.joblib",
+      "fine_classes": [
+        "glc",
+        "msp",
+        "psr"
+      ],
+      "fallback_fine_class": "msp"
+    },
+    "BINARY_SYSTEMS": {
+      "status": "trained",
+      "model_name": "LDA",
+      "tag": "90_DECORR",
+      "features": [
+        "log_Unc_Energy_Flux100",
+        "LP_beta",
+        "SpectrumType_PLSuperExpCutoff",
+        "Frac_Variability",
+        "log_Pivot_Energy",
+        "PL_Index",
+        "GLON_cos"
+      ],
+      "model_path": "inference_3level/branch_BINARY_SYSTEMS_model.joblib",
+      "label_encoder_path": "inference_3level/branch_BINARY_SYSTEMS_label_encoder.joblib",
+      "fine_classes": [
+        "bin",
+        "hmb",
+        "lmb",
+        "nov"
+      ],
+      "fallback_fine_class": "hmb"
+    },
+    "SNR_PWN": {
+      "status": "trained",
+      "model_name": "CatBoost",
+      "tag": "99_SHIFT_ROBUST",
+      "features": [
+        "log_Unc_Flux1000",
+        "SpectrumType_PLSuperExpCutoff",
+        "Unc_PL_Flux_Density",
+        "Unc_LP_Flux_Density",
+        "Unc_PLEC_Flux_Density",
+        "log_Pivot_Energy",
+        "GLON_cos",
+        "SpectrumType_LogParabola"
+      ],
+      "model_path": "inference_3level/branch_SNR_PWN_model.joblib",
+      "label_encoder_path": "inference_3level/branch_SNR_PWN_label_encoder.joblib",
+      "fine_classes": [
+        "pwn",
+        "snr"
+      ],
+      "fallback_fine_class": "snr"
+    },
+    "GALACTIC_EXT": {
+      "status": "trained",
+      "model_name": "CatBoost",
+      "tag": "99",
+      "features": [
+        "log_Unc_Flux1000",
+        "log_Unc_Energy_Flux100",
+        "LP_beta",
+        "PLEC_ExpfactorS",
+        "SpectrumType_PLSuperExpCutoff",
+        "Frac_Variability",
+        "log_Variability_Index",
+        "PL_Flux_Density",
+        "Unc_PL_Flux_Density",
+        "LP_Flux_Density",
+        "Unc_LP_Flux_Density",
+        "PLEC_Flux_Density",
+        "Unc_PLEC_Flux_Density",
+        "log_Pivot_Energy",
+        "PL_Index",
+        "LP_Index",
+        "PLEC_IndexS",
+        "GLON_cos",
+        "SpectrumType_LogParabola",
+        "Conf_68_SemiMajor",
+        "Conf_68_SemiMinor",
+        "HR_4_5"
+      ],
+      "model_path": "inference_3level/branch_GALACTIC_EXT_model.joblib",
+      "label_encoder_path": "inference_3level/branch_GALACTIC_EXT_label_encoder.joblib",
+      "fine_classes": [
+        "gal",
+        "sbg",
+        "sfr"
+      ],
+      "fallback_fine_class": "sbg"
+    }
+  },
+  "blazar_fine_passthrough": {
+    "BLAZAR_HE": "fsrq",
+    "BLAZAR_LE": "bll"
+  }
+}

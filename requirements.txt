@@ -1,0 +1,18 @@
+# Versions used for the final run (Python 3.14). GPU run: CUDA 12.8 torch build + cuML.
+numpy==2.4.6
+pandas==2.3.3
+scipy==1.17.1
+scikit-learn==1.9.0
+astropy==7.2.0
+catboost==1.2.10
+torch==2.11.0
+joblib==1.5.3
+tqdm==4.68.1
+matplotlib==3.10.9
+seaborn==0.13.2
+shap==0.52.0
+dtreeviz==2.3.2
+# Optional: only imported if listed in SEARCH_MODELS / USE_GPU=True
+# xgboost==3.2.0
+# lightgbm==4.6.0
+# cuml-cu13==26.4.0
